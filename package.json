@@ -1,0 +1,32 @@
+{
+  "name": "dropsuit-bowtag",
+  "version": "1.0.8",
+  "description": "DropSuit NLP - bowtag function: A JavaScript and Node.js library for generating a bag of words from input and data structure intent tags",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ladooniani/dropsuit-bowtag.git"
+  },
+  "keywords": [
+    "bag of words generation",
+    "intent tagging",
+    "stemming"
+  ],
+  "author": "Lado Oniani",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ladooniani/dropsuit-bowtag/issues"
+  },
+  "homepage": "https://github.com/ladooniani/dropsuit-bowtag#readme",
+  "dependencies": {
+    "stem": "^1.0.5",
+    "tok": "^1.0.9",
+    "dtstruc": "^1.0.8"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
+}

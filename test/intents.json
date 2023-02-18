@@ -1,0 +1,120 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "requests": ["Hello", "Hi"],
+      "responses": ["Hi", "Hey!"]
+    },
+    {
+      "tag": "goodbye",
+      "requests": ["Bye", "See you later"],
+      "responses": ["See you later, thanks for visiting", "Goodbye"]
+    },
+    {
+      "tag": "thanks",
+      "requests": ["Thanks", "Thank you"],
+      "responses": ["Happy to help!", "Any time!"]
+    },
+    {
+      "tag": "items",
+      "requests": [
+        "What items do you have available?",
+        "Can you tell me about the products you offer?"
+      ],
+      "responses": [
+        "We have a wide range of books and state-of-the-art sensor tablets available",
+        "We specialize in books, as well as cutting-edge sensor tablets."
+      ]
+    },
+    {
+      "tag": "payments",
+      "requests": ["Do you take credit cards?", "Do you accept Mastercard?"],
+      "responses": [
+        "We accept VISA, Mastercard, and Paypal for your convenience.",
+        "We gladly accept most major credit cards and Paypal."
+      ]
+    },
+    {
+      "tag": "delivery",
+      "requests": [
+        "How long does delivery take?",
+        "How long does shipping take?"
+      ],
+      "responses": [
+        "We estimate 3-5 business days for delivery.",
+        "Your order will be delivered within 3-5 business days."
+      ]
+    },
+    {
+      "tag": "entertainment",
+      "requests": ["What are your hobbies?", "Do you have any hobbies?"],
+      "responses": [
+        "I enjoy reading, hiking, and playing music",
+        "I like reading, playing video games and sports"
+      ]
+    },
+    {
+      "tag": "programming",
+      "requests": [
+        "What is the best language for beginner programmers?",
+        "What is the most recommended language for new programmers?"
+      ],
+      "responses": [
+        "Python, Java, or JavaScript are good choices for beginner programmers.",
+        "Many people recommend Python as the best language for new programmers."
+      ]
+    },
+    {
+      "tag": "health",
+      "requests": [
+        "What are some healthy eating habits?",
+        "What are some recommended healthy snacks for computer users?"
+      ],
+      "responses": [
+        "Healthy eating habits: balanced diet, avoid junk food, take breaks.",
+        "Healthy snacks: fruits, nuts, seeds, carrots, or celery."
+      ]
+    },
+    {
+      "tag": "child",
+      "requests": [
+        "What is the definition of a child?",
+        "How can I help a child develop emotionally and mentally?"
+      ],
+      "responses": [
+        "A child is a young human being below the age of majority.",
+        "Encourage creativity, provide stability, encourage exploration, read together."
+      ]
+    },
+    {
+      "tag": "ai",
+      "requests": [
+        "What is the definition of Artificial Intelligence?",
+        "Can you explain what Artificial Intelligence is?"
+      ],
+      "responses": [
+        "AI is a tech that behaves and thinks like humans, using algorithms and machine learning.",
+        "Artificial Intelligence simulates human intelligence in machines designed to act like humans."
+      ]
+    },
+    {
+      "tag": "robots",
+      "requests": ["What is a robot?", "What is the definition of a robot?"],
+      "responses": [
+        "A robot is a machine designed to carry out a complex series of actions automatically, especially by being programmed by a computer.",
+        "Robots are automated machines designed to perform specific tasks."
+      ]
+    },
+    {
+      "tag": "computer",
+      "requests": [
+        "What is a computer?",
+        "What are the components of a computer?"
+      ],
+      "responses": [
+        "A computer is an electronic device that processes data.",
+        "Components of a computer: CPU, RAM, storage, motherboard, power supply."
+      ]
+    }
+  ]
+}
