@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/ladooniani/dropsuit-bowtag#readme",
   "dependencies": {
-    "stem": "^1.0.5",
-    "tok": "^1.0.9",
-    "dtstruc": "^1.0.8"
+    "dropsuit-stem": "^1.0.5",
+    "dropsuit-tok": "^1.0.9",
+    "dropsuit-dtstruc": "^1.0.8"
   },
   "devDependencies": {
     "mocha": "^10.2.0"
