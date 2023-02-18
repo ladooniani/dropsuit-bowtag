@@ -1,6 +1,6 @@
 {
   "name": "dropsuit-bowtag",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "DropSuit NLP - bowtag function: A JavaScript and Node.js library for generating a bag of words from input and data structure intent tags",
   "main": "index.js",
   "scripts": {
