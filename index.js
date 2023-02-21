@@ -67,7 +67,7 @@ const dropsuit_tok = require("../dropsuit-tok/index.js");
 let dstok = new dropsuit_tok(null, false);
 
 const dropsuit_stem = require("../dropsuit-stem/index.js");
-let dsstem = new dropsuit_stem(null, false);
+let dsstem = new dropsuit_stem(null, 0, false);
 
 const dropsuit_dtstruc = require("../dropsuit-dtstruc/index.js");
 
@@ -88,7 +88,7 @@ function bowtag_f(requests, tags, responses, dostem, dispout) {
   let tokenWords = dstok.tok(requests, 1).tokArr();
 
   if (dostem == true) {
-    tokenWords = dsstem.stem(tokenWords, 0, 0);
+    tokenWords = dsstem.stem(tokenWords, 0, 0, true);
   }
 
   let dsdtstruc = new dropsuit_dtstruc(requests, tags, responses, false);
