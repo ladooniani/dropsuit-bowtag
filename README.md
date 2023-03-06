@@ -1,21 +1,21 @@
 [<img alt="TAI Lab." width="59px" src="https://github.com/ladooniani/tailab/blob/master/assets/tai_lab_terbinari_cbm_project_logo.png" />](https://github.com/ladooniani/dropsuit#readme)
 
-[![npm version](https://img.shields.io/npm/v/dropsuit-bowtag.svg?style=flat)](https://www.npmjs.com/package/dropsuit-bowtag) [![npm](https://img.shields.io/npm/dt/dropsuit-bowtag.svg?style=flat-square)](https://www.npmjs.com/package/dropsuit-bowtag) [![License](https://img.shields.io/npm/l/dropsuit-bowtag.svg)](https://www.npmjs.com/package/dropsuit-bowtag)
+[![npm version](https://img.shields.io/npm/v/dropsuit-decor.svg?style=flat)](https://www.npmjs.com/package/dropsuit-decor) [![npm](https://img.shields.io/npm/dt/dropsuit-decor.svg?style=flat-square)](https://www.npmjs.com/package/dropsuit-decor) [![License](https://img.shields.io/npm/l/dropsuit-decor.svg)](https://www.npmjs.com/package/dropsuit-decor)
 
-# Overview of [DropSuit](https://github.com/ladooniani/dropsuit#readme) NLP and the bowtag Function
+# Overview of [DropSuit](https://github.com/ladooniani/dropsuit#readme) NLP and the decor Function
 
-[DropSuit](https://github.com/ladooniani/dropsuit#readme) NLP is an open-source JavaScript and Node.js library offering diverse functions for natural language processing and data manipulation. The bowtag function is one of its modules, designed for generating a bag of words from input and data structure intent tags. It is available under the Apache License 2.0.
+[DropSuit](https://github.com/ladooniani/dropsuit#readme) NLP is an open-source JavaScript and Node.js library offering diverse functions for natural language processing and data manipulation. The decor function is one of its modules, designed for formatting and styling text strings. It is available under the Apache License 2.0.
 
-## DropSuit NLP Method: A JavaScript and Node.js function for generating a bag of words from input and data structure intent tags
+## DropSuit NLP Method: decor - A JavaScript and Node.js function for formatting and styling text strings
 
-The bowtag function is a part of the DropSuit NLP library, it's a JavaScript and Node.js function that generates a bag of words from input and data structure intent tags. It accepts a boolean parameter to enable or disable stemming. It's open-source and available under the Apache License 2.0.
+The decor function is a part of the DropSuit NLP library, it's a JavaScript and Node.js function that formats and stylizes text strings. It's open-source and available under the Apache License 2.0.
 
 ### Installation
 
 Add the library function by installing it via npm:
 
 ```
-npm install dropsuit-bowtag
+npm install dropsuit-decor
 ```
 
 ### Usage
@@ -23,86 +23,64 @@ npm install dropsuit-bowtag
 Import the library in your project:
 
 ```
-const dropsuit_bowtag = require("dropsuit-bowtag");
+const dropsuit_decor = require("dropsuit-decor");
 
 ```
 
-Process [intents.json](https://github.com/ladooniani/dropsuit-bowtag/blob/main/test/intents.json) using 'jsonIntStrct' function:
+If you want to see the processing results in the terminal, you can set the second argument to true when creating the instance, like this:
 
 ```
-const json_data = require("dropsuit-bowtag/jsobj.js");
-let intentData = json_data.jsonIntStrct("assets/json/intents.json");
+let dsdecor = new dropsuit_decor(false);
 ```
 
-Set boolean parameter (true/false) argument value to display console log processing results output information in terminal:
+#### decor(input: string|array)
 
-```
-let dsbowtag = new dropsuit_bowtag(intentData.req_arr, intentData.tag_arr, intentData.res_arr, false);
-```
-
-#### bowtag(boolean)
-
-- **array**: Processes default object instance json key value _(req_arr: requests)_, _(tag_arr: tags)_ array patterns.
-- **boolean**: (true/false) Enable or disable stemming.
+- **input**: Input sentence string.
 
 #### Return option:
 
-- **tagsbt()** Bag of words.
-- **bowtbt()** Tags IDx value sequence arrays.
+- **design(type, delimiter)** Returns 'pascal' and 'camel' case with delimiter.
+- **tokens()** Returns an array of processed tokens.
+
+## Design option
+
+The design(type, delimiter) option in the bow() function returns the output strings in pascal or camel case with the specified delimiter. The type parameter can be either "pascal" or "camel". The delimiter parameter is optional and can be any string. If not provided, the default delimiter is an empty string. Here's an example usage:
 
 ```
-let out = dsbowtag.bowtag(false);
-console.log(out);
-```
-
-Return object instance:
+let input = "The camel walks through the hot desert";
+let dsbdes = new dropsuit_bow(null, false);
 
 ```
-Output:
 
- {
-  size_bt: 6,
-  bow_bt: [
-    [
-      2, 1, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0
-    ],
-    [
-      0, 0, 2, 1, 1, 0, 0,
-      0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0
-    ],
-    [
-      0, 0, 0, 0, 0, 1, 1,
-      2, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0
-    ],
-    [
-      0, 0, 0, 0, 1, 0, 0,
-      0, 1, 2, 1, 1, 1, 0,
-      0, 0, 0, 0
-    ],
-    [
-      0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 2,
-      1, 1, 0, 0
-    ],
-    [
-      0, 0, 0, 0, 1, 0, 0,
-      0, 0, 0, 0, 0, 0, 1,
-      0, 0, 1, 1
-    ]
-  ],
-  tag_bt: [ 0, 0, 1, 1, 2, 2 ],
-  bowtbt: [Function: bowtbt],
-  tagsbt: [Function: tagsbt]
-}
+Then, we can use the design function to generate different string representations, like this:
+
+```
+// Default (no arguments) returns a space separated string
+let output1 = dsbdes.bow(input).design(); // the camel walks through the hot desert
+
+// Empty delimiter returns a string without spaces
+let output2 = dsbdes.bow(input).design(""); // thecamelwalksthroughhotdesert
+
+// Delimiter "-" returns a hyphen separated string in kebab case
+let output3 = dsbdes.bow(input).design("", "-"); // the-camel-walks-through-hot-desert
+
+// Pascal case with no delimiter and 'pascal-' minus '-' property to remove duplicates
+let output4 = dsbdes.bow(input).design("pascal-"); // TheCamelWalksThroughHotDesert
+
+// Pascal case with delimiter "~"
+let output5 = dsbdes.bow(input).design("pascal", "~"); // The~Camel~Walks~Through~The~Hot~Desert
+
+// Camel case with no delimiter
+let output6 = dsbdes.bow(input).design("camel"); // theCamelWalksThroughTheHotDesert
+
+// Camel case with delimiter " @"  and 'camel-' minus '-' property to remove duplicates
+let output7 = dsbdes.bow(input).design("camel-", " @"); // the @Camel @Walks @Through @Hot @Desert
+
 ```
 
 ## Links
 
-- npm: https://www.npmjs.com/package/dropsuit-bowtag
+- npm: https://www.npmjs.com/package/dropsuit-bow
 
 ## Supporting DropSuit
 

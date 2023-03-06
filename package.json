@@ -1,32 +1,32 @@
 {
-  "name": "dropsuit-bowtag",
-  "version": "1.0.9",
-  "description": "DropSuit NLP - bowtag function: A JavaScript and Node.js library for generating a bag of words from input and data structure intent tags",
+  "name": "dropsuit-decor",
+  "version": "1.0.0",
+  "description": "DropSuit NLP - Decor Function: A JavaScript and Node.js library for formatting and styling text strings",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  },
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ladooniani/dropsuit-bowtag.git"
+    "url": "git+https://github.com/ladooniani/dropsuit-decor.git"
   },
   "keywords": [
-    "bag of words generation",
-    "intent tagging",
-    "stemming"
+    "string decoration",
+    "string design",
+    "string formatting",
+    "string styling"
   ],
   "author": "Lado Oniani",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/ladooniani/dropsuit-bowtag/issues"
+    "url": "https://github.com/ladooniani/dropsuit-decor/issues"
   },
-  "homepage": "https://github.com/ladooniani/dropsuit-bowtag#readme",
-  "dependencies": {
-    "dropsuit-stem": "^1.0.5",
-    "dropsuit-tok": "^1.0.9",
-    "dropsuit-dtstruc": "^1.0.8"
-  },
-  "devDependencies": {
-    "mocha": "^10.2.0"
-  }
+  "homepage": "https://github.com/ladooniani/dropsuit-decor#readme"
 }

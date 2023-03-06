@@ -13,9 +13,9 @@ function displayInfoData() {
     "\n-----------------------------------------------------------\n";
   const libraryInformation = line + liblink + libName;
   const functionDescription = `${libraryInformation}
-    bowtag(boolean)
-    Input: boolean (true/false) Enable or disable stemming.
-    array: Processes default object instance json key value (req_arr: requests), (tag_arr: tags) array patterns.
+    decor(string)
+    Input: String.
+ 
     
     Output: 
       tagsbt(): Bag of words array.

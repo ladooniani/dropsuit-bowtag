@@ -29,106 +29,179 @@
 
 //#region  Constructor
 
-function Constructor(requests, tags, responses, dsout) {
-  this.requests = requests;
-  this.tags = tags;
-  this.responses = responses;
+function Constructor(dsout) {
   this.dsout = dsout;
 }
 
 //#endregion
 
-//#region bowtag
+//#region bow
 
 /**
- * @Constructs bowtag
- * @description - bowtag(boolean) function - Bag of words and Tags IDx value sequence arrays.
-Processes default object instance key values (req_arr: requests), (tag_arr: tags), (res_arr: responses).
- * @param {boolean} dostem - (true/false) Enable or disable stemming.
- * @returns {object} - bowtg() Bag of words, tags() Tags IDx value sequence arrays.
+ * Constructs a new instance of the 'Bag of Words' (BOW) processing object.
+ * This function can process an input sentence or word, or use the default input specified in the constructor.
+ * @constructor
+ * @param {string|null} [input=null] - The input sentence or word to be processed.
+ * Leave as `null` to use the default input specified in the constructor.
+ * @returns {object} - A 'Bag of Words' object, with a method to retrieve the processed array.
  */
 
-Constructor.prototype.bowtag = function (dostem) {
-  let out = bowtag_f(
-    this.requests,
-    this.tags,
-    this.responses,
-    dostem,
-    this.dsout
-  );
+Constructor.prototype.decor = function (inputData) {
+  let out = decor_f(inputData, this.dsout);
   return out;
 };
 
 //#endregion
 
-//#region bowtag_f
- 
+//#region bow_f
+
+const dropsuit_clnstr = require("../dropsuit-clnstr/index.js");
+var ds_clnstr = new dropsuit_clnstr(null, false);
+
 const dropsuit_tok = require("../dropsuit-tok/index.js");
 let dstok = new dropsuit_tok(null, false);
 
-const dropsuit_stem = require("../dropsuit-stem/index.js");
-let dsstem = new dropsuit_stem(null, 0, false);
-
-const dropsuit_dtstruc = require("../dropsuit-dtstruc/index.js");
-
 /**
- * Bag of words and Tags IDx value sequence arrays.
- * @param {array} responses - Responses.
- * @param {array} tags - Tags.
- * @param {array} requests - Requests.
- * @param {boolean} dostem - (true/false) Enable or disable stemming.
- * @param {boolean} dispout - (true/false) Display processing output results in terminal.
- * @returns {object} - bowtg() Bag of words, tags() Tags IDx value sequence arrays.
- * @example bowtag_f(array, array, array, bool, bool)
+ * Constructs a Bag of Words (BOW) object.
+ *
+ * @function
+ * @constructor
+ * @description Creates a BOW object with optional input sentence or word and display options.
+ * @param {string|null} [inputsent=null] - Optional input sentence or word to be processed. If not provided, the constructor's input will be used.
+ * @param {boolean} [dispout=false] - Display processing output results in the terminal.
+ * @returns {object} - A BOW object with a bag of words and accessory options.
+ * @example
+ * const bow = new bow(inputsent, dispout);
  */
 
-function bowtag_f(requests, tags, responses, dostem, dispout) {
-  let XtrainWordsInputSize = [];
-  let YtrainTagsOutputSize = [];
-  let tokenWords = dstok.tok(requests, 1).tokArr();
-
-  if (dostem == true) {
-    tokenWords = dsstem.stem(tokenWords, 0, 0, true);
+function decor_f(inputsent, dispout) {
+  if (inputsent != null) {
+    inputsent = ds_clnstr.clnstr(inputsent).txt();
+    var tokenWords = dstok.tok(inputsent, 0).tokArr();
+    let design = bowsObj(tokenWords, inputsent);
+    display(design, dispout); /// DISPLAY >>
+    return design;
   }
-
-  let dsdtstruc = new dropsuit_dtstruc(requests, tags, responses, false);
-  let dataStruct = dsdtstruc.dtstruc().xy();
-
-  XtrainWordsInputSize = dataStruct.map((splitTagPat) => {
-    let bagArr = Array(tokenWords.length).fill(0);
-    let splitTagPatPart = splitTagPat.split("=");
-    let idtg = splitTagPatPart[0];
-    let idtag = idtg.split("+");
-    let id = parseInt(idtag[0]);
-
-    let pt = splitTagPatPart[1].split(" ");
-
-    pt.filter((p) => tokenWords.includes(p)).forEach((p) => {
-      let objIndex = tokenWords.indexOf(p);
-      bagArr[objIndex] += 1;
-    });
-
-    YtrainTagsOutputSize.push(id);
-    return bagArr;
-  });
-  let outret = return_bowtOut(XtrainWordsInputSize, YtrainTagsOutputSize);
-  display(dispout, outret); /// DISPLAY >>
-  return outret;
 }
 
-function return_bowtOut(XtrainWordsInputSize, YtrainTagsOutputSize) {
-  const bowtObj = {
-    size_bt: XtrainWordsInputSize.length,
-    bow_bt: XtrainWordsInputSize,
-    tag_bt: YtrainTagsOutputSize,
-    bowtbt: function () {
-      return this.bow_bt;
+function bowsObj(tokenWords, inputsent) {
+  const bowobj = {
+    tokenized: tokenWords,
+
+    tokens: function () {
+      return this.tokenized;
     },
-    tagsbt: function () {
-      return this.tag_bt;
+
+    design: function (type, delimiter) {
+      return designTypes(type, delimiter, tokenWords, inputsent);
     },
   };
-  return bowtObj;
+  return bowobj;
+}
+
+function designTypes(type, delimiter, tokenWords, inputsent) {
+  inputsent = inputsent.split(" ");
+  if (type == undefined) {
+    //return str;
+  } else {
+    if (type != "") {
+      type = ds_clnstr.clnstr(type).pnc();
+    }
+    if (type == "camel-") {
+      return camel(tokenWords, delimiter);
+    } else if (type == "pascal-") {
+      return pascal(tokenWords, delimiter);
+    } else if (type == "camel") {
+      return camel(inputsent, delimiter);
+    } else if (type == "pascal") {
+      return pascal(inputsent, delimiter);
+    } else if (type == "") {
+      return set(tokenWords, delimiter);
+    } else {
+      //  return cont_str;
+    }
+  }
+}
+
+function set(tokenWords, delimiter) {
+  let desDtr = tokenWords[0];
+  if (delimiter === undefined) {
+    delimiter = "";
+  }
+  for (let i = 1; i < tokenWords.length; i++) {
+    desDtr = desDtr + delimiter + tokenWords[i];
+  }
+  return desDtr;
+}
+
+function camel(tokenWords, delimiter) {
+  let desDtr;
+  desDtr = tokenWords[0];
+  desDtr = build(tokenWords, desDtr, delimiter);
+  return desDtr;
+}
+
+function pascal(tokenWords, delimiter) {
+  let desDtr;
+  desDtr = capitalize(tokenWords[0]);
+  desDtr = build(tokenWords, desDtr, delimiter);
+  return desDtr;
+}
+
+function build(tokenWords, desDtr, delimiter) {
+  if (delimiter === undefined) {
+    delimiter = "";
+  }
+  for (let i = 1; i < tokenWords.length; i++) {
+    desDtr = desDtr + delimiter + capitalize(tokenWords[i]);
+  }
+  return desDtr;
+}
+
+function capitalize(input) {
+  const output = input.charAt(0).toUpperCase() + input.slice(1);
+  return output;
+}
+
+function arrStrChecker(inputdtwords) {
+  let isArray = arrChecker(inputdtwords);
+  var isString = stringChecker(inputdtwords);
+  if (isString == true) {
+    return "string";
+  } else if (isArray == true) {
+    return "array";
+  }
+}
+
+function arrChecker(array) {
+  const result = Array.isArray(array);
+  if (result) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function stringChecker(string) {
+  if (typeof string === "string") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function arrToStr(input, aos, cond) {
+  let out;
+  if (aos == "array") {
+    if (cond == 1) {
+      out = input.join(" ").replace(/\s/g, "");
+    } else if (cond == 2) {
+      out = input.join(" ");
+    }
+    return out;
+  } else {
+    return input;
+  }
 }
 
 //#endregion
@@ -139,10 +212,9 @@ const getdt = require("./infodt.js");
 let fnctit = getdt.displayInfoData();
 const line = fnctit.line;
 var description = fnctit.descript;
-
-function display(dispout, outret) {
+function display(design, dispout) {
   if (dispout == true) {
-    console.log(description, "\n\nOutput:\n\n", outret, "\n", line);
+    console.log(description, "\n", design, "\n", line);
   }
 }
 
