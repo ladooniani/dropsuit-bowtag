@@ -1,14 +1,10 @@
 [<img alt="TAI Lab." width="59px" src="https://github.com/ladooniani/tailab/blob/master/assets/tai_lab_terbinari_cbm_project_logo.png" />](https://github.com/ladooniani/dropsuit#readme)
-
+<!--
 [![npm version](https://img.shields.io/npm/v/dropsuit-decor.svg?style=flat)](https://www.npmjs.com/package/dropsuit-decor) [![npm](https://img.shields.io/npm/dt/dropsuit-decor.svg?style=flat-square)](https://www.npmjs.com/package/dropsuit-decor) [![License](https://img.shields.io/npm/l/dropsuit-decor.svg)](https://www.npmjs.com/package/dropsuit-decor)
+-->
+# DropSuit NLP: Decor Function for Formatting and Styling Text Strings
 
-# Overview of [DropSuit](https://github.com/ladooniani/dropsuit#readme) NLP and the decor Function
-
-[DropSuit](https://github.com/ladooniani/dropsuit#readme) NLP is an open-source JavaScript and Node.js library offering diverse functions for natural language processing and data manipulation. The decor function is one of its modules, designed for formatting and styling text strings. It is available under the Apache License 2.0.
-
-## DropSuit NLP Method: decor - A JavaScript and Node.js function for formatting and styling text strings
-
-The decor function is a part of the DropSuit NLP library, it's a JavaScript and Node.js function that formats and stylizes text strings. It's open-source and available under the Apache License 2.0.
+[DropSuit](https://github.com/ladooniani/dropsuit#readme) NLP is an open-source JavaScript and Node.js library that provides various functions for natural language processing and data manipulation. The decor function is one of the library's modules and is used for formatting and styling text strings. The decor function is open-source and available under the Apache License 2.0.
 
 ### Installation
 
@@ -77,11 +73,11 @@ let output6 = dsbdes.bow(input).design("camel"); // theCamelWalksThroughTheHotDe
 let output7 = dsbdes.bow(input).design("camel-", " @"); // the @Camel @Walks @Through @Hot @Desert
 
 ```
-
+<!--
 ## Links
 
-- npm: https://www.npmjs.com/package/dropsuit-bow
-
+- npm: https://www.npmjs.com/package/dropsuit-decor
+-->
 ## Supporting DropSuit
 
 DropSuit is an open-source library and I am dedicated to ensuring its continued development and improvement. If you have any questions, feedback, or encounter any issues, please reach out through the [support via PayPal](https://www.paypal.com/paypalme/dropsuit?country.x=GE&locale.x=en_US), and read more about [support details](https://github.com/ladooniani/dropsuit/blob/main/Support.md).

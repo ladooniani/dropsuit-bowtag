@@ -16,10 +16,7 @@ function displayInfoData() {
     decor(string)
     Input: String.
  
-    
-    Output: 
-      tagsbt(): Bag of words array.
-      bowtbt(): Tags IDx value sequence arrays.
+    Output: Formatting and Styling Text Strings.
     ${divider}`;
 
   const displayInfoData = {

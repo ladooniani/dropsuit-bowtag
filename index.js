@@ -35,15 +35,14 @@ function Constructor(dsout) {
 
 //#endregion
 
-//#region bow
+//#region decor
 
 /**
- * Constructs a new instance of the 'Bag of Words' (BOW) processing object.
- * This function can process an input sentence or word, or use the default input specified in the constructor.
+ * Formatting and Styling Text Strings
  * @constructor
  * @param {string|null} [input=null] - The input sentence or word to be processed.
  * Leave as `null` to use the default input specified in the constructor.
- * @returns {object} - A 'Bag of Words' object, with a method to retrieve the processed array.
+ * @returns {object} - Formatting and Styling Text Strings
  */
 
 Constructor.prototype.decor = function (inputData) {
@@ -53,7 +52,7 @@ Constructor.prototype.decor = function (inputData) {
 
 //#endregion
 
-//#region bow_f
+//#region decor_f
 
 const dropsuit_clnstr = require("../dropsuit-clnstr/index.js");
 var ds_clnstr = new dropsuit_clnstr(null, false);
@@ -62,12 +61,11 @@ const dropsuit_tok = require("../dropsuit-tok/index.js");
 let dstok = new dropsuit_tok(null, false);
 
 /**
- * Constructs a Bag of Words (BOW) object.
- *
+ * Constructs a Formatting and Styling Text Strings
  * @function
  * @constructor
- * @description Creates a BOW object with optional input sentence or word and display options.
- * @param {string|null} [inputsent=null] - Optional input sentence or word to be processed. If not provided, the constructor's input will be used.
+ * @description Formatting and Styling Text Strings.
+ * @param {string|null} [inputsent=null] - Optional input sentence or word to be processed.
  * @param {boolean} [dispout=false] - Display processing output results in the terminal.
  * @returns {object} - A BOW object with a bag of words and accessory options.
  * @example
@@ -91,7 +89,6 @@ function bowsObj(tokenWords, inputsent) {
     tokens: function () {
       return this.tokenized;
     },
-
     design: function (type, delimiter) {
       return designTypes(type, delimiter, tokenWords, inputsent);
     },
@@ -102,7 +99,8 @@ function bowsObj(tokenWords, inputsent) {
 function designTypes(type, delimiter, tokenWords, inputsent) {
   inputsent = inputsent.split(" ");
   if (type == undefined) {
-    //return str;
+    inputsent = dstok.tok(inputsent, 0).tokStr();
+     return inputsent;
   } else {
     if (type != "") {
       type = ds_clnstr.clnstr(type).pnc();
@@ -118,7 +116,8 @@ function designTypes(type, delimiter, tokenWords, inputsent) {
     } else if (type == "") {
       return set(tokenWords, delimiter);
     } else {
-      //  return cont_str;
+      inputsent = dstok.tok(inputsent, 0).tokStr();
+       return inputsent;
     }
   }
 }
@@ -161,47 +160,6 @@ function build(tokenWords, desDtr, delimiter) {
 function capitalize(input) {
   const output = input.charAt(0).toUpperCase() + input.slice(1);
   return output;
-}
-
-function arrStrChecker(inputdtwords) {
-  let isArray = arrChecker(inputdtwords);
-  var isString = stringChecker(inputdtwords);
-  if (isString == true) {
-    return "string";
-  } else if (isArray == true) {
-    return "array";
-  }
-}
-
-function arrChecker(array) {
-  const result = Array.isArray(array);
-  if (result) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function stringChecker(string) {
-  if (typeof string === "string") {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function arrToStr(input, aos, cond) {
-  let out;
-  if (aos == "array") {
-    if (cond == 1) {
-      out = input.join(" ").replace(/\s/g, "");
-    } else if (cond == 2) {
-      out = input.join(" ");
-    }
-    return out;
-  } else {
-    return input;
-  }
 }
 
 //#endregion
